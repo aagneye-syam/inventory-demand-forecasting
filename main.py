@@ -109,3 +109,11 @@ sb.distplot(df['sales'])
 plt.subplot(1, 2, 2)
 sb.boxplot(df['sales'])
 plt.show()
+
+plt.figure(figsize=(10, 10))
+sb.heatmap(df.corr() > 0.8,
+		annot=True,
+		cbar=False)
+plt.show()
+
+df = df[df['sales']<140]
