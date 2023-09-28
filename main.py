@@ -84,4 +84,8 @@ for i, col in enumerate(features):
 	df.groupby(col).mean()['sales'].plot.bar()
 plt.show()
 
+plt.figure(figsize=(10,5))
+df.groupby('day').mean()['sales'].plot()
+plt.show()
+
 
