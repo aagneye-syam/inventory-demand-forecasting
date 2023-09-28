@@ -117,3 +117,34 @@ sb.heatmap(df.corr() > 0.8,
 plt.show()
 
 df = df[df['sales']<140]
+
+#Traning the model.........
+
+features = df.drop(['sales', 'year'], axis=1)
+target = df['sales'].values
+
+
+X_train, X_val, Y_train, Y_val = train_test_split(features,target,test_size = 0.05,random_state=22)
+X_train.shape, X_val.shape
+
+# Normalizing the features for stable and fast training.
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
+
+models = [LinearRegression(), XGBRegressor(), Lasso(), Ridge()]
+
+for i in range(4):
+	models[i].fit(X_train, Y_train)
+
+	print(f'{models[i]} : ')
+
+	train_preds = models[i].predict(X_train)
+	print('Training Error : ', mae(Y_train, train_preds))
+
+	val_preds = models[i].predict(X_val)
+	print('Validation Error : ', mae(Y_val, val_preds))
+	print()
+
+
+
