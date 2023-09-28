@@ -62,3 +62,11 @@ df.head()
 df['m1'] = np.sin(df['month'] * (2 * np.pi / 12))
 df['m2'] = np.cos(df['month'] * (2 * np.pi / 12))
 df.head()
+
+def which_day(year, month, day):
+	
+	d = datetime(year,month,day)
+	return d.weekday()
+
+df['weekday'] = df.apply(lambda x: which_day(x['year'],x['month'],x['day']),axis=1)
+df.head()
