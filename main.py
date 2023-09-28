@@ -10,6 +10,9 @@ from xgboost import XGBRegressor
 from sklearn.linear_model import LinearRegression, Lasso, Ridge
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error as mae
+
+from datetime import datetime
+import calendar
   
 import warnings
 warnings.filterwarnings('ignore')
@@ -28,4 +31,15 @@ parts = df["date"].str.split("-", n = 3, expand = True)
 df["year"]= parts[0].astype('int')
 df["month"]= parts[1].astype('int')
 df["day"]= parts[2].astype('int')
+df.head()
+
+def weekend_or_weekday(year,month,day):
+      
+    d = datetime(year,month,day)
+    if d.weekday()>4:
+        return 1
+    else:
+        return 0
+  
+df['weekend'] = df.apply(lambda x:weekend_or_weekday(x['year'], x['month'], x['day']), axis=1)
 df.head()
