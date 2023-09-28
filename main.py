@@ -58,3 +58,7 @@ def is_holiday(x):
   
 df['holidays'] = df['date'].apply(is_holiday)
 df.head()
+ 
+df['m1'] = np.sin(df['month'] * (2 * np.pi / 12))
+df['m2'] = np.cos(df['month'] * (2 * np.pi / 12))
+df.head()
