@@ -13,6 +13,9 @@ from sklearn.metrics import mean_absolute_error as mae
 
 from datetime import datetime
 import calendar
+
+from datetime import date
+import holidays
   
 import warnings
 warnings.filterwarnings('ignore')
@@ -42,4 +45,16 @@ def weekend_or_weekday(year,month,day):
         return 0
   
 df['weekend'] = df.apply(lambda x:weekend_or_weekday(x['year'], x['month'], x['day']), axis=1)
+df.head()
+
+def is_holiday(x):
+    
+  india_holidays = holidays.country_holidays('IN')
+  
+  if india_holidays.get(x):
+    return 1
+  else:
+    return 0
+  
+df['holidays'] = df['date'].apply(is_holiday)
 df.head()
