@@ -70,3 +70,6 @@ def which_day(year, month, day):
 
 df['weekday'] = df.apply(lambda x: which_day(x['year'],x['month'],x['day']),axis=1)
 df.head()
+
+df.drop('date', axis=1, inplace=True)
+
