@@ -73,3 +73,15 @@ df.head()
 
 df.drop('date', axis=1, inplace=True)
 
+df['store'].nunique(), df['item'].nunique()
+
+features = ['store', 'year', 'month',\
+			'weekday', 'weekend', 'holidays']
+
+plt.subplots(figsize=(20, 10))
+for i, col in enumerate(features):
+	plt.subplot(2, 3, i + 1)
+	df.groupby(col).mean()['sales'].plot.bar()
+plt.show()
+
+
