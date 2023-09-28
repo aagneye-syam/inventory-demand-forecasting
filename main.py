@@ -89,3 +89,16 @@ df.groupby('day').mean()['sales'].plot()
 plt.show()
 
 
+plt.figure(figsize=(15, 10))
+
+window_size = 30
+data = df[df['year']==2013]
+windows = data['sales'].rolling(window_size)
+sma = windows.mean()
+sma = sma[window_size - 1:]
+
+data['sales'].plot()
+sma.plot()
+plt.legend()
+plt.show()
+
