@@ -102,3 +102,10 @@ sma.plot()
 plt.legend()
 plt.show()
 
+plt.subplots(figsize=(12, 5))
+plt.subplot(1, 2, 1)
+sb.distplot(df['sales'])
+
+plt.subplot(1, 2, 2)
+sb.boxplot(df['sales'])
+plt.show()
